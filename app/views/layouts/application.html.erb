@@ -1,3 +1,11 @@
+<style>
+  li{
+    margin:0 10px 0;
+  }
+  footer{
+    margin:0 auto 0;
+  }
+</style>
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,28 +13,83 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <script src="https://kit.fontawesome.com/453699ab29.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-     <header>
+  <body class="d-flex flex-column vh-100">
+  
+     <header class="shadow-sm">
+       
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="container">
+          <a class="navbar-brand p-3" href="<%= root_path %>">Bookers</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              
     <% if user_signed_in? %>
-      <li>
-      <%= link_to '投稿フォーム', new_book_path %>
+       <li>
+      <%= link_to user_path(current_user) do %>
+      <i class="fas fa-home"></i> Home
+      <% end %>
       </li>
+
       <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <%= link_to  users_path do %>
+      <i class="fa-solid fa-users"></i> Users
+      <% end %>
+      </li>
+      
+      <li>
+      <%= link_to  books_path  do %>
+      <i class="fa-solid fa-book-open"></i> Books
+      <% end %>
+      </li>
+      
+       
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="fas fa-sign-out-alt"></i> Log out
+        <% end %>
       </li>
     <% else %>
       <li>
-        <%= link_to "新規登録", new_user_registration_path %>
+        <%= link_to root_path do %>
+         <i class="fas fa-home"></i> Home
+      <% end %>
+      </li>
+       <li>
+        <%= link_to about_path do %>
+        <i class="fa-solid fa-link"></i> About
+        <% end %>
+      </li>
+      
+      <li>
+        <%= link_to  new_user_registration_path do %>
+        <i class="fa-solid fa-user-plus"></i> Sign up
+        <% end %>
       </li>
       <li>
-        <%= link_to "ログイン", new_user_session_path %>
+        <%= link_to new_user_session_path do %>
+        <i class="fas fa-sign-in-alt"></i> Log in
+        <% end %>
+        
       </li>
-    <% end %>
-  </header>  <%= yield %>
+      <% end %>
+      
+  </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto"><%= yield %></main>
+    <footer>CopyRight Infratop.inc</footer>
   </body>
 </html>

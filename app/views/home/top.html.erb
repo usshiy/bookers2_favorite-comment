@@ -1,0 +1,30 @@
+<style>
+        .top_style{
+                 margin: 10px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        }
+        span{
+            font-weight:bold;
+        }
+</style>
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<div class="top_style">
+<h1>Welcome to <span><i class="fa-solid fa-book"></i>Bookers !!</span></h1>
+<P>In <span><i class="fa-solid fa-book"></i>Bookers</span></p>
+<p>you can share and exchange your opinions,inpressions<br>,and emotions about various books!</p>
+ 
+        
+       <a class="btn btn-info w-50" href="<%=  new_user_session_path %>"style="margin-bottom:10px;">Log in</a>
+       <a class="btn btn-success w-50 " href="<%= new_user_registration_path %>">Sign up</a>
+       </div>
+      
+       
+

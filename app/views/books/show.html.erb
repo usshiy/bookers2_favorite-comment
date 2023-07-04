@@ -1,8 +1,63 @@
-<div>
-  <%= image_tag @book.get_image %>
-  <p>書籍名：<%= @book.title %></p>
-  <p>説明：<%= @book.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-  <p>投稿日：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
-</div>
+<style>
+  .container{
+    
+  }
+  .row{
+    
+  }
+  .col-md-3{
+    
+  }
+  .col-md-8.offset-md-1{
+    
+  }
+</style>
+
+<main>
+  <div class="container">  
+    <div class="row">    
+      <div class="col-md-3">
+        <%= render 'users/user', user: @user %>
+        <%= render 'books/new', book: @book_new %>
+      </div>
+      <div class="col-md-8 offset-md-1">
+        <h3>Book detail</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to user_path(@book.user) do %>
+                  <%= image_tag(@book.user.get_profile_image(100, 100)) %><br>
+                  <%= @book.user.name %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(@book) do %>
+                  <%= @book.title %>
+                <% end %>
+              </td>
+              <td><%= @book.body %></td>
+              <td>
+                <% if @book.user == current_user %>
+                  <%= link_to "Edit", edit_book_path(@book) %>
+                <% end %>
+              </td>
+              <td>
+                <% if @book.user == current_user %>
+                  <%= link_to "Destroy", book_path(@book), method: :delete %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

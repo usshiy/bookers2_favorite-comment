@@ -1,0 +1,29 @@
+<style>
+ .user_info{
+  margin:10px auto 10px;
+ }
+</style>
+
+<div class="user_info">
+ <%= image_tag user.get_profile_image(100,100) %>
+<table class="table table-striped">
+<tbody>
+ <tr>
+  <th>name</th>
+  <th><%= user.name %></th>
+ </tr>
+ <tr>
+  <th>introduction</th>
+  <th><%= user.introduction %></th>
+ </tr>
+</tbody>
+</table>
+
+
+<div class="row">
+ <a class="btn btn-secondary w-100 h-20" href ="<%= edit_user_path(user) %>" >
+  <i class="fas fa-user-cog"></i>
+ </a>
+ </div>
+
+ </div>
